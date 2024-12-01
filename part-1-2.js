@@ -21,14 +21,15 @@ const commands = lines.map(line => {
   }
 });
 
+const n = 30;
 let result = 0;
 const sky = [];
 
-for (let x = 0; x < 30; x++) {
+for (let x = 0; x < n; x++) {
   sky[x] = [];
-  for (let y = 0; y < 30; y++) {
+  for (let y = 0; y < n; y++) {
     sky[x][y] = [];
-    for (let z = 0; z < 30; z++) {
+    for (let z = 0; z < n; z++) {
       const stack = [];
       let pc = 0;
 
@@ -80,9 +81,9 @@ console.log('Part 1:', result);
 
 // Part 2
 let cloudCount = 0
-for (let x = 0; x < 30; x++) {
-  for (let y = 0; y < 30; y++) {
-    for (let z = 0; z < 30; z++) {
+for (let x = 0; x < n; x++) {
+  for (let y = 0; y < n; y++) {
+    for (let z = 0; z < n; z++) {
       if (sky[x][y][z] === 1) {
         cloudCount++;
         const q = [[x, y, z]];
@@ -102,15 +103,15 @@ for (let x = 0; x < 30; x++) {
             q.push([c[0], c[1], c[2] - 1]);
             sky[c[0]][c[1]][c[2] - 1] = 0;
           }
-          if (c[0] < 29 && sky[c[0] + 1][c[1]][c[2]]) {
+          if (c[0] < n - 1 && sky[c[0] + 1][c[1]][c[2]]) {
             q.push([c[0] + 1, c[1], c[2]]);
             sky[c[0] + 1][c[1]][c[2]] = 0;
           }
-          if (c[1] < 29 && sky[c[0]][c[1] + 1][c[2]]) {
+          if (c[1] < n - 1 && sky[c[0]][c[1] + 1][c[2]]) {
             q.push([c[0], c[1] + 1, c[2]]);
             sky[c[0]][c[1] + 1][c[2]] = 0;
           }
-          if (c[2] < 29 && sky[c[0]][c[1]][c[2] + 1]) {
+          if (c[2] < n - 1 && sky[c[0]][c[1]][c[2] + 1]) {
             q.push([c[0], c[1], c[2] + 1]);
             sky[c[0]][c[1]][c[2] + 1] = 0;
           }
